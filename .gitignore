@@ -1,0 +1,47 @@
+# Maven wrapper
+.mvn/wrapper/maven-wrapper.jar
+
+# Target folders (build output)
+target/
+!**/src/main/**/target/
+!**/src/test/**/target/
+
+# Build folders for Gradle (if applicable)
+build/
+!**/src/main/**/build/
+!**/src/test/**/build/
+
+# STS / Eclipse
+.apt_generated/
+.classpath
+.factorypath
+.project
+.settings/
+.springBeans
+.sts4-cache/
+
+# IntelliJ IDEA
+.idea/
+*.iws
+*.iml
+*.ipr
+
+# NetBeans
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+
+# VS Code
+.vscode/
+
+# Ignore logs
+*.log
+
+# Ignore OS generated files
+.DS_Store
+Thumbs.db
+
+# Ignore editor backup files
+*~
