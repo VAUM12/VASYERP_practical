@@ -4,19 +4,20 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.time.LocalDateTime;
+import java.util.Date;
 
 public class ApiResponse <T>{
     private String status;
     private String message;
     private T data;
-    private LocalDateTime timestamp;
+    private Date timestamp;
     private String path;
 
     public ApiResponse(String status, String message, T data, String path) {
         this.status = status;
         this.message = message;
         this.data = data;
-        this.timestamp = LocalDateTime.now();
+        this.timestamp = new Date();
         this.path = path;
     }
 
@@ -52,11 +53,11 @@ public class ApiResponse <T>{
         this.status = status;
     }
 
-    public LocalDateTime getTimestamp() {
+    public Date  getTimestamp() {
         return timestamp;
     }
 
-    public void setTimestamp(LocalDateTime timestamp) {
+    public void setTimestamp(Date  timestamp) {
         this.timestamp = timestamp;
     }
 }

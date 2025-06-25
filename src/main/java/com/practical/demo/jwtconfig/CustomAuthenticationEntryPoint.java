@@ -1,23 +1,37 @@
 package com.practical.demo.jwtconfig;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.practical.demo.util.ApiResponse;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import org.apache.juli.logging.Log;
-import org.apache.juli.logging.LogFactory;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.AuthenticationEntryPoint;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
+import java.time.LocalDateTime;
+import java.util.Date;
 
 @Component
 public class CustomAuthenticationEntryPoint implements AuthenticationEntryPoint {
-    private static final Log logger = LogFactory.getLog(CustomAuthenticationEntryPoint.class);
+
+    private final ObjectMapper mapper = new ObjectMapper();
 
     @Override
-    public void commence(HttpServletRequest request, HttpServletResponse response, AuthenticationException authException) throws IOException {
-        response.setContentType("application/json;charset=UTF-8");
+    public void commence(HttpServletRequest request,
+                         HttpServletResponse response,
+                         AuthenticationException authException) throws IOException {
+
+        ApiResponse<String> errorResponse = new ApiResponse<>(
+                "error",
+                "Please log in to access this resource.",
+                null,
+                request.getRequestURI()
+        );
+        errorResponse.setTimestamp(new Date());
+
         response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
-        response.getWriter().write("{\"message\": \"Please log in to access this resource.\"}");
+        response.setContentType("application/json");
+        response.getWriter().write(mapper.writeValueAsString(errorResponse));
     }
 }

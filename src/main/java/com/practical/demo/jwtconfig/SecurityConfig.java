@@ -53,9 +53,6 @@ public class SecurityConfig {
                         // Public endpoints
                         .requestMatchers("/auth/welcome", "/auth/register", "/auth/login", "/swagger-ui/**", "/v3/api-docs/**", "/h2-console/**").permitAll()
 
-                        // Role-based endpoints
-                        .requestMatchers("/api/v1/students/**").hasAuthority("ROLE_ADMIN").requestMatchers("/auth/user/**").hasAuthority("ROLE_ADMIN").requestMatchers("/auth/admin/**").hasAuthority("ROLE_ADMIN")
-
                         // All other endpoints require authentication
                         .anyRequest().authenticated()).exceptionHandling(exception -> exception.authenticationEntryPoint(customAuthenticationEntryPoint).accessDeniedHandler(accessDeniedHandler))
                 // Stateless session (required for JWT)
